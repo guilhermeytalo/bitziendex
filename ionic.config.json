@@ -1,0 +1,7 @@
+{
+  "name": "Bitzendex",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
