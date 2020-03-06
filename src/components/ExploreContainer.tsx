@@ -3,11 +3,8 @@ import {
   IonCard,
   IonRow, 
   IonCardTitle, 
-  IonCol,
-  IonList,
-  IonModal, 
-  IonButton,
-  IonContent} from '@ionic/react';
+  IonCol
+  } from '@ionic/react';
 import './ExploreContainer.css';
 import axios from "axios";
 import {Link} from 'react-router-dom';
@@ -27,13 +24,8 @@ const ExploreContainer: React.FC<ContainerProps> = () => {
           <IonRow>
             <IonCol>
             <IonCard>
-              <img src="..." alt="pokePic" />
               <IonCardTitle>{pokemon['name']}</IonCardTitle>
               <Link to={`/pokemon?pokemon=${pokemon['url']}`}>See Details</Link>
-
-              <IonList>
-                  teste3
-              </IonList>
             </IonCard>
             </IonCol>
           </IonRow>
@@ -45,7 +37,7 @@ const ExploreContainer: React.FC<ContainerProps> = () => {
   
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon/?limit=8')
+      .get('https://pokeapi.co/api/v2/pokemon/?limit=20')
       .then(response => {
         console.log(response.data);
         setPokemonData(response.data.results);

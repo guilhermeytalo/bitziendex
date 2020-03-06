@@ -4,4 +4,11 @@ ion-content ion-toolbar {
       background: rgb(88,175,130);
   }
   
+  .poke-pic {
+    text-align: center;
+  }
   
+  .ion-buttons {
+    text-align: center;
+    width: 101%;
+  }

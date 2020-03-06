@@ -1,21 +1,18 @@
 import { IonContent, 
   IonCard,
   IonCardHeader,
-  IonCardSubtitle,
   IonHeader, 
   IonPage, 
   IonTitle,
   IonCardTitle, 
-  IonCardContent,
   IonToolbar,
   IonList,
   IonItem,
   IonLabel,
-  IonButton, 
-  IonIcon
-   } from '@ionic/react';
+  IonButton  } from '@ionic/react';
 import React, {useState, useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
+
 import './Pokemon.css';
 import axios from 'axios';
 
@@ -23,6 +20,11 @@ const Pokemon: React.FC = () => {
 const query = new URLSearchParams(useLocation().search);
 const pokemon = query.get("pokemon") || '';
 const [pokemonData, setPokemonData] = useState<any>(null);
+
+
+
+
+
 
   useEffect(() => {
     axios
@@ -35,7 +37,8 @@ const [pokemonData, setPokemonData] = useState<any>(null);
         console.log(error);
         setPokemonData(false);
       });
-  }, [])
+  }, [pokemon])
+
 
   
   return (
@@ -46,17 +49,19 @@ const [pokemonData, setPokemonData] = useState<any>(null);
         </IonToolbar>
       </IonHeader>
       <IonContent>
-
-      
       {pokemonData  ? 
       <IonCard>
-      <img src="..." alt="..."/>
+      <div className="poke-pic">
+      <img src={pokemonData['sprites']['front_default']} alt="poke-pic: {pokemonData['name']}"/>
+      </div>
       <IonCardHeader>
         <IonCardTitle>{pokemonData['name']}</IonCardTitle>
       </IonCardHeader>
-      <IonButton color="primary">HP: {pokemonData['stats'][5]['base_stat']}</IonButton>
+      <div className="ion-buttons">
+      <IonButton color="success">HP: {pokemonData['stats'][5]['base_stat']}</IonButton>
       <IonButton color="secondary">Defense: {pokemonData['stats'][3]['base_stat']}</IonButton>
-      <IonButton color="tertiary">Speed: {pokemonData['stats'][0]['base_stat']}</IonButton>
+      <IonButton color="medium">Speed: {pokemonData['stats'][0]['base_stat']}</IonButton>
+      </div>
       <IonList>
      
         
@@ -77,10 +82,12 @@ const [pokemonData, setPokemonData] = useState<any>(null);
         <IonLabel>Height: {pokemonData['height']}</IonLabel>
       </IonItem>
       <IonItem>
-        <IonLabel>Status: </IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Moves</IonLabel>
+        <IonLabel>
+          Type: {
+            pokemonData['moves'].map((move: any, ind: number) => {
+              return (ind) ? `, ${move['move']['name']}` : move['move']['name']; 
+            }).join('')
+          }</IonLabel>
       </IonItem>
     </IonList>
     </IonCard>  
