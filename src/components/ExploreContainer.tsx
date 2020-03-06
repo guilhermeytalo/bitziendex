@@ -3,29 +3,29 @@ import {
   IonCard,
   IonRow, 
   IonCardTitle, 
-  IonCol,
-  IonList} from '@ionic/react';
+  IonCol
+  } from '@ionic/react';
 import './ExploreContainer.css';
 import axios from "axios";
-// require('bootstrap');
-// import readline from "readline-sync";
+import {Link} from 'react-router-dom';
 interface ContainerProps { }
 
 
 const ExploreContainer: React.FC<ContainerProps> = () => {
   const [pokemonData, setPokemonData]  = useState([]);
+  
+
+  
   const renderLista = useCallback(() => {
-    return pokemonData.map(pokemon => {
+    return pokemonData.map((pokemon, key) => {
+      if (key === 0) console.log(pokemon)
       return (
-        <div className="grid-full">    
+        <div key={key} className="grid-full">    
           <IonRow>
             <IonCol>
             <IonCard>
-              <img src="..." alt="pokePic" />
-              <IonCardTitle>{pokemon['name']} : {pokemon['url']}</IonCardTitle>
-              <IonList>
-                  teste
-              </IonList>
+              <IonCardTitle>{pokemon['name']}</IonCardTitle>
+              <Link to={`/pokemon?pokemon=${pokemon['url']}`}>See Details</Link>
             </IonCard>
             </IonCol>
           </IonRow>
@@ -33,10 +33,11 @@ const ExploreContainer: React.FC<ContainerProps> = () => {
       )
     });
   }, [pokemonData]);
+
   
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon/?limit=8')
+      .get('https://pokeapi.co/api/v2/pokemon/?limit=20')
       .then(response => {
         console.log(response.data);
         setPokemonData(response.data.results);
@@ -47,15 +48,6 @@ const ExploreContainer: React.FC<ContainerProps> = () => {
       });
   }, [])
 
-  // function renderLista(pokemonData){
-  //   let url = response.data 
-  //   fetch(url)
-  //   .then(response => response.json())
-  //   .then(function(pokeData){
-  //     console.log(pokeData)  
-  //   })
-  }
-
   return (
     <div className="container">
       <strong>Pokemons Cards</strong>
@@ -63,6 +55,7 @@ const ExploreContainer: React.FC<ContainerProps> = () => {
           
       <table id="example" className="display" style={{width: "100%"}}></table>
       {renderLista()}
+      
     </div>
 
   );

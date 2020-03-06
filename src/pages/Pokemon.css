@@ -1,0 +1,15 @@
+
+ion-content ion-toolbar {
+    --background: translucent;
+      background: linear-gradient(90deg, rgba(88,175,130,1) 0%, rgba(0,162,178,1) 100%); 
+      background: rgb(88,175,130);
+  }
+  
+  .poke-pic {
+    text-align: center;
+  }
+  
+  .ion-buttons {
+    text-align: center;
+    width: 101%;
+  }
