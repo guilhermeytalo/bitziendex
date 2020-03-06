@@ -60,7 +60,7 @@ const [pokemonData, setPokemonData] = useState<any>(null);
       <div className="ion-buttons">
       <IonButton color="success">HP: {pokemonData['stats'][5]['base_stat']}</IonButton>
       <IonButton color="secondary">Defense: {pokemonData['stats'][3]['base_stat']}</IonButton>
-      <IonButton color="medium">Speed: {pokemonData['stats'][0]['base_stat']}</IonButton>
+      <IonButton color="tertiary">Speed: {pokemonData['stats'][0]['base_stat']}</IonButton>
       </div>
       <IonList>
      
