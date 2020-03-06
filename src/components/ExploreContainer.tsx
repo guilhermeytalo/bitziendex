@@ -10,12 +10,8 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 interface ContainerProps { }
 
-
 const ExploreContainer: React.FC<ContainerProps> = () => {
   const [pokemonData, setPokemonData]  = useState([]);
-  
-
-  
   const renderLista = useCallback(() => {
     return pokemonData.map((pokemon, key) => {
       if (key === 0) console.log(pokemon)
@@ -33,7 +29,6 @@ const ExploreContainer: React.FC<ContainerProps> = () => {
       )
     });
   }, [pokemonData]);
-
   
   useEffect(() => {
     axios

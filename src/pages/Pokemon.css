@@ -13,3 +13,7 @@ ion-content ion-toolbar {
     text-align: center;
     width: 101%;
   }
+
+  .pokeName {
+    text-align: center;
+  }

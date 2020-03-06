@@ -12,7 +12,6 @@ import { IonContent,
   IonButton  } from '@ionic/react';
 import React, {useState, useEffect} from 'react';
 import { useLocation} from 'react-router-dom';
-
 import './Pokemon.css';
 import axios from 'axios';
 
@@ -20,11 +19,6 @@ const Pokemon: React.FC = () => {
 const query = new URLSearchParams(useLocation().search);
 const pokemon = query.get("pokemon") || '';
 const [pokemonData, setPokemonData] = useState<any>(null);
-
-
-
-
-
 
   useEffect(() => {
     axios
@@ -54,17 +48,17 @@ const [pokemonData, setPokemonData] = useState<any>(null);
       <div className="poke-pic">
       <img src={pokemonData['sprites']['front_default']} alt="poke-pic: {pokemonData['name']}"/>
       </div>
+      <div className="pokeName">
       <IonCardHeader>
         <IonCardTitle>{pokemonData['name']}</IonCardTitle>
       </IonCardHeader>
+      </div>
       <div className="ion-buttons">
       <IonButton color="success">HP: {pokemonData['stats'][5]['base_stat']}</IonButton>
       <IonButton color="secondary">Defense: {pokemonData['stats'][3]['base_stat']}</IonButton>
       <IonButton color="tertiary">Speed: {pokemonData['stats'][0]['base_stat']}</IonButton>
       </div>
       <IonList>
-     
-        
        <IonItem>
         <IonLabel>
           Type: {
@@ -74,7 +68,6 @@ const [pokemonData, setPokemonData] = useState<any>(null);
           }
         </IonLabel>
       </IonItem>
-      
       <IonItem>
         <IonLabel>Weight: {pokemonData['weight']}</IonLabel>
       </IonItem>
@@ -93,8 +86,6 @@ const [pokemonData, setPokemonData] = useState<any>(null);
     </IonCard>  
     : <></>
     }
-    
-        
       </IonContent>
     </IonPage>
   );
